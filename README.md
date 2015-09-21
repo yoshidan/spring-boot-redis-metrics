@@ -6,6 +6,7 @@ spring-boot-actuatorを利用してRedisのコネクションプールの情報�
 
 JedisPublicMetricsをSpringのComponentとしてください。
 
+```
 @Bean
 public JedisConnectionFactory someConnectionFactory() {
      JedisConnectionFactory factory = new JedisConnectionFactory();
@@ -18,6 +19,7 @@ public JedisConnectionFactory someConnectionFactory() {
 public JedisPublicMetrics jedisPublicMetrics(Map<String,JedisConnectionFactory> factories) {
     return new JedisPublicMetrics(factories);
 }
+```
 
 上記の状態でspring-boot-actuatorのmetricsを参照すると結果が取得できます。
 
