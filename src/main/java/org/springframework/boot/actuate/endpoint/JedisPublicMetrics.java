@@ -1,20 +1,18 @@
 package org.springframework.boot.actuate.endpoint;
 
 import org.apache.commons.pool2.impl.GenericObjectPool;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.actuate.metrics.Metric;
-import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
 import org.springframework.data.redis.connection.jedis.JedisConnectionFactory;
-import org.springframework.util.MultiValueMap;
 import org.springframework.util.ReflectionUtils;
-
-import redis.clients.jedis.JedisShardInfo;
 import redis.clients.util.ObjectPoolAccessor;
 import redis.clients.util.Pool;
+
 import javax.annotation.PostConstruct;
 import java.lang.reflect.Field;
-import java.util.*;
-import java.util.function.BiConsumer;
+import java.util.Collection;
+import java.util.LinkedHashSet;
+import java.util.List;
+import java.util.Map;
 import java.util.function.Supplier;
 import java.util.stream.Collectors;
 
