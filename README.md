@@ -37,7 +37,7 @@ metricsの各種値野意味は以下の通りです。
 |-------|--------|
 | redis.${beanName}.active | 現在Activeになっているコネクション数 |
 | redis.${beanName}.idle | 現在Idle状態のコネクション数 |
-| redis.${beanName}.usage | コネクション数の利用率( maxActive / maxTotal ) |
+| redis.${beanName}.usage | コネクション数の利用率 |
 
 ## dependency
 
