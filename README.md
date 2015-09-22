@@ -45,7 +45,7 @@ metricsの各種値野意味は以下の通りです。
 <dependency>
     <groupId>spring.support</groupId>
     <artifactId>spring-boot-redis-metrics</artifactId>
-    <version>1.6.0-BUILD-SNAPSHOT</version>
+    <version>1.0.0</version>
 </dependency>
 ```
 
@@ -55,10 +55,6 @@ metricsの各種値野意味は以下の通りです。
 <repository>
     <id>nysq</id>
     <url>http://nysd.github.io/archivar</url>
-    <snapshots>
-       <enabled>true</enabled>
-       <updatePolicy>always</updatePolicy>
-    </snapshots>
 </repository>
 ```
 
