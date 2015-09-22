@@ -31,15 +31,13 @@ curl localhost:8080/metrics/redis.*
  "redis.someConnectionFactory.usage":0.0}
 ```
 
-## result
-
 metricsの各種値野意味は以下の通りです。
 
 | プロパティ | 数値 |
 |-------|--------|
 | redis.${beanName}.active | 現在Activeになっているコネクション数 |
 | redis.${beanName}.idle | 現在Idle状態のコネクション数 |
-| redis.${beanName}.usage | コネクション数の利用率( activeコネクション数 / 最大コネクション数 |
+| redis.${beanName}.usage | コネクション数の利用率 |
 
 ## dependency
 
