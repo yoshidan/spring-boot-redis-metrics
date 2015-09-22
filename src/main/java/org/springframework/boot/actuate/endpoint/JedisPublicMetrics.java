@@ -50,18 +50,20 @@ public class JedisPublicMetrics implements PublicMetrics {
         return pools.stream().map(p -> {
             Collection<Metric<?>> perCon = new LinkedHashSet<>();
             Pool pool = p.value.get();
+            if( pool != null ) {
+                GenericObjectPool internalPool = ObjectPoolAccessor.getInternalPool(pool);
+                int numActive = pool.getNumActive();
+                int maxTotal = internalPool.getMaxTotal();
+                int numIdle = pool.getNumIdle();
+                String prefix = String.format("redis.%s", p.key);
 
-            GenericObjectPool internalPool = ObjectPoolAccessor.getInternalPool(pool);
-            int numActive = pool.getNumActive();
-            int maxTotal = internalPool.getMaxTotal();
-            int numIdle = pool.getNumIdle();
-            String prefix = String.format("redis.%s", p.key);
-
-            perCon.add(new Metric<>(prefix + ".active", numActive));
-            perCon.add(new Metric<>(prefix + ".idle", numIdle));
-            perCon.add( new Metric<>(prefix + ".usage", (float) (numActive / maxTotal)));
+                perCon.add(new Metric<>(prefix + ".active", numActive));
+                perCon.add(new Metric<>(prefix + ".idle", numIdle));
+                perCon.add(new Metric<>(prefix + ".usage", (float) (numActive / maxTotal)));
+            }
             return perCon;
-        }).flatMap(perCon -> perCon.stream()).collect(Collectors.toList());
+        }).filter(p->!p.isEmpty())
+                .flatMap(perCon -> perCon.stream()).collect(Collectors.toList());
     }
 
     private static class Pair<K,V> {
