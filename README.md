@@ -45,7 +45,7 @@ metricsの各種値野意味は以下の通りです。
 <dependency>
     <groupId>spring.support</groupId>
     <artifactId>spring-boot-redis-metrics</artifactId>
-    <version>1.0.0</version>
+    <version>1.3.0.M5</version>
 </dependency>
 ```
 
