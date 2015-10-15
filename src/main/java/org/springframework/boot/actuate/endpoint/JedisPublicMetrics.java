@@ -9,6 +9,7 @@ import redis.clients.util.Pool;
 
 import javax.annotation.PostConstruct;
 import java.lang.reflect.Field;
+import java.math.BigDecimal;
 import java.util.Collection;
 import java.util.LinkedHashSet;
 import java.util.List;
@@ -52,14 +53,16 @@ public class JedisPublicMetrics implements PublicMetrics {
             Pool pool = p.value.get();
             if( pool != null ) {
                 GenericObjectPool internalPool = ObjectPoolAccessor.getInternalPool(pool);
-                int numActive = pool.getNumActive();
-                int maxTotal = internalPool.getMaxTotal();
-                int numIdle = pool.getNumIdle();
+                double numActive = pool.getNumActive();
+                double maxTotal = internalPool.getMaxTotal();
+                double numIdle = pool.getNumIdle();
                 String prefix = String.format("redis.%s", p.key);
+
+                BigDecimal usage = BigDecimal.valueOf(numActive / maxTotal).setScale(3, BigDecimal.ROUND_HALF_UP);
 
                 perCon.add(new Metric<>(prefix + ".active", numActive));
                 perCon.add(new Metric<>(prefix + ".idle", numIdle));
-                perCon.add(new Metric<>(prefix + ".usage", (float) (numActive / maxTotal)));
+                perCon.add(new Metric<>(prefix + ".usage",usage.doubleValue()));
             }
             return perCon;
         }).filter(p->!p.isEmpty())
