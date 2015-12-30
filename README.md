@@ -1,4 +1,4 @@
-# spring-boot-redis-actuator
+# spring-boot-redis-metrics
 
 spring-boot-actuatorを利用してRedisのコネクションプールの情報を取得します。
 
