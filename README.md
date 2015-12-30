@@ -1,7 +1,6 @@
 # spring-boot-redis-actuator
 
 spring-boot-actuatorを利用してRedisのコネクションプールの情報を取得します。
-spring boot 1.3.0.M5(spring-data-redis 1.6.0.RELEASE)がデフォルトで利用するJedisに限定です。
 
 ## how to use
 
@@ -42,11 +41,13 @@ metricsの各種値野意味は以下の通りです。
 
 ## dependency
 
+versionはSpring BootのRELEASEバージョンに対応しています。
+
 ```
 <dependency>
     <groupId>spring.support</groupId>
     <artifactId>spring-boot-redis-metrics</artifactId>
-    <version>1.3.0.M5.1</version>
+    <version>1.3.1</version>
 </dependency>
 ```
 
